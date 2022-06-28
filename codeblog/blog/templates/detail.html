@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <article class="content">
+        <h2 class="">{{ post.title }} </h2>
+        <time> {{ post.date_added }} </time> <span>{{ post.category.title }}</span>
+        <p> {{ post.intro }} </p>
+        <p> {{ post.body }} </p>
+
+        <h2> Comments </h2>
+        {% for comment in post.comments.all %}
+            <article>
+                <span><strong>{{ comment.fullname }}</strong> at {{comment.date_added|date:"d M Y"}}</span><br>
+                <p>{{ comment.body }} </p>
+            </article>
+        {% endfor %}
+
+        <h2> Add a comment </h2>
+        <form method="post" action=".">
+            {% csrf_token %} 
+            {{ form.as_table }}
+
+            <input type="submit" value="Add comment" />
+        </form>
+    </article>
+
+
+{% endblock %}
