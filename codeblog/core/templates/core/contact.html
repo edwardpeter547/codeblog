@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+
+{% block content %}
+    <h1>Contact</h1>
+    <p class="mb-8">
+        you can contact us by sending us a quick message using the form below, and we will respond to you within 24 hours.
+    </p>
+
+    <form action="." method="post" class="mb-12">
+        <div class="flex flex-wrap mb-6 -mx-3">
+            {% csrf_token %}
+
+            {{ form.as_table }}
+
+            <div class="flex justify-end w-full">
+                <input
+                    type="submit"
+                    value="Submit"
+                    class="block bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold leading-snug tracking-wide uppercase shadow rounded-lg cursor-pointer px-6 py-3"
+                >
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}
